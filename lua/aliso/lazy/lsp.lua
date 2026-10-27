@@ -49,13 +49,13 @@ return {
 
         require("mason").setup()
         require("mason-lspconfig").setup({
-            ensure_installed = {
-                "lua_ls",
-                "pyright",
-            },
+            ensure_installed = {}, -- Leave empty on Termux; install servers via `pkg`
             automatic_enable = true,
         })
 
+        -- Enable Termux system-installed LSP servers natively
+        vim.lsp.enable({ "lua_ls", "pyright" })
+            
         local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
         cmp.setup({
